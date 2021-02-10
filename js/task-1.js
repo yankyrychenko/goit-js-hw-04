@@ -1,24 +1,25 @@
-// Write code under this line
-const addIndex = (element, index) => element + index;
-// Write code under this line
-const subIndex = (element, index) => element - index;
+const account = {
+  owner: 'Mango',
+  balance: 24000,
+  discount: 0.1,
+  orders: ['order-1', 'order-2', 'order-3'],
+  changeDiscount(value) {
+    this.discount = value;
+  },
+  showOrders() {
+    return this.orders;
+  },
+  addOrder(cost, order) {
+    this.balance -= cost;
+    this.orders.push(order);
+  },
+};
 
-function mapArray(array, cb) {
-  "use strict";
-  // Write code under this line
-  const numbers = new Array(array.length);
-  for (let i = 0; i < array.length; i += 1) {
-    const element = array[i];
-    const index = i;
-    numbers[i] = cb(element, index);
-  }
-  return numbers;
-}
+account.changeDiscount(0.15);
+console.log(account.discount);
 
-const arr = [1, 2, 3, 4, 5];
+console.table(account.showOrders());
 
-console.log(mapArray(arr, addIndex));
-// [1, 3, 5, 7, 9]
-
-console.log(mapArray(arr, subIndex));
-// [1, 1, 1, 1, 1]
+account.addOrder(5000, 'order-4');
+console.log(account.balance);
+console.table(account.showOrders());
